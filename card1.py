@@ -6,11 +6,13 @@ import random
 def gen_problem():
     p = [0] * 3
     p[random.randint(0, 2)] = 1  #[0, 2]
-    # suppose you choose card 1
+    # suppose you choose card[0]
+    # now if the card[1] has coin, host will pick up card[2] and
+    # tell that you can change your mind and choose card[1]
     return p, 1 if p[1] == 1 else 2
 
 def guess(p):
-    # choose card 1 or the other one
+    # choose card[0] or the other one
     choice = random.choice((0, p[1]))
     return choice, p[0][choice] == 1
 
@@ -32,7 +34,7 @@ def test(epoch):
             if ret[1]:
                 right2 += 1
     print "Guess A:", float(right1) / count1
-    print "Guess another:", float(right2) / count2
+    print "Guess the other:", float(right2) / count2
 
 test(100000)
 
